@@ -1,0 +1,69 @@
+swagger: "2.0"
+info:
+  description: "API for Rates reader"
+  version: "0.0.1"
+  title: "Rates reader"
+host: ""
+#basePath: "/v1"
+schemes:
+- "http"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /api/v1/help:
+    get:
+      summary: Service API documentation
+      description: |
+        Swagger documentation rendered by ReDoc
+      produces:
+      - text/html
+      responses:
+        200:
+          description: Documentation page
+      tags:
+  /api/v1/rates?from={from]&to={to}:
+    get:
+      summary: "Returns new account"
+      parameters:
+      - name: "from"
+        in: "path"
+        description: "what currency do we recalculate"
+        required: true
+        type: "string"
+        enum: [BTC, LTC, ETH, BKX, USD]
+      - name: "to"
+        in: "path"
+        description: "what currency we recalculate"
+        required: true
+        type: "string"
+        enum: [BTC, LTC, ETH, BKX, USD]
+      responses:
+        200:
+          description: "rate"
+          type: "float64"
+        500:
+          description: "Something went wrong"
+      tags:
+      - rates
+  /api/v1/rates/all?from={from]:
+    get:
+      summary: "Returns balance for account"
+      parameters:
+      - name: "from"
+        in: "path"
+        description: "what currency do we recalculate"
+        required: true
+        type: "string"
+        enum: [BTC, LTC, ETH, BKX, USD]
+      responses:
+        200:
+          description: "balance of account"
+          type: "map[string]float64"
+        500:
+          description: "Something went wrong"
+      tags:
+      - rates
+
+

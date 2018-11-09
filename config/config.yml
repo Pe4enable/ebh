@@ -1,0 +1,21 @@
+ticker: ETH
+block: 1484495
+confirmations: 1
+decimals: 9
+
+node:
+   type: ETH
+   host: 51.144.244.221:60045
+
+db:
+   name: btcListener
+   url: mongodb://localhost:27017
+   collection: wallets
+
+port: 8001
+#ticker: BTC
+#block: 537760
+
+   #host: 52.166.56.104:8335
+   #user: bitcoin
+   #pass: local321
