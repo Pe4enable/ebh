@@ -5,7 +5,6 @@ import (
 	"github.com/BankEx/ebh/config"
 	"github.com/BankEx/ebh/handlers"
 	"github.com/BankEx/ebh/router"
-	"github.com/BankEx/ebh/services"
 	"log"
 	"net/http"
 	"github.com/BankEx/ebh/repositories"
@@ -23,11 +22,11 @@ func main() {
 		panic(err)
 	}
 
-	nodeService, err := services.NewNodeReader(conf)
-	if err != nil {
-		panic(err)
-	}
-	log.Printf("ETHService is initialised")
+	//nodeService, err := services.NewNodeReader(conf)
+	//if err != nil {
+	//	panic(err)
+	//}
+	//log.Printf("ETHService is initialised")
 
 	//cache := make(chan ratestates.RateState, conf.Cache)
 	//err = btcService.ConnectToDB()
@@ -49,7 +48,7 @@ func main() {
 	log.Printf("MongoWriter is initialised")
 	//go mongo.Start(cache)
 
-	handlers := handlers.New(nodeService, mongo)
+	handlers := handlers.New(nil, mongo)
 	r := router.New(handlers)
 
 	log.Printf("Server is listening on %s port", conf.Port)

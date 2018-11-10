@@ -26,12 +26,8 @@
 
 
 [[constraint]]
-  name = "github.com/BankEx/bankex-icowallet-db-service"
-  version = "1.0.16"
-
-[[constraint]]
-  name = "github.com/ethereum/go-ethereum"
-  version = "1.8.17"
+  name = "github.com/BankEx/bankex-tokensale-common"
+  version = "1.0.15"
 
 [[constraint]]
   name = "github.com/gorilla/handlers"
@@ -52,8 +48,3 @@
 [prune]
   go-tests = true
   unused-packages = true
-
-[[prune.project]]
-    name = "github.com/ethereum/go-ethereum"
-    non-go = false
-    unused-packages = false

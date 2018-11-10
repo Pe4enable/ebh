@@ -8,13 +8,13 @@ import (
 type Sertificate struct {
 	ID            		bson.ObjectId `bson:"id,omitempty"`
 	CreateDate       	time.Time 	`bson:"createDate,omitempty"`
-	OwnerName string
+	OwnerName string	`bson:"ownerName"`
 	Ogrn string
 	Address string
 	Volume float64
 	Period string
 	Co2Volume float64
-	SertNumber string
+	SertNumber string	`bson:"sertNumber"`
 	LifeTime int
 	Type string
 	Wallet string

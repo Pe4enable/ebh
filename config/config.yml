@@ -8,9 +8,9 @@ node:
    host: 51.144.244.221:60045
 
 db:
-   name: btcListener
-   url: mongodb://localhost:27017
-   collection: wallets
+   name: greenSert
+   url: mongodb://104.248.253.150:27018
+   collection: serts
 
 port: 8001
 #ticker: BTC

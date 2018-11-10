@@ -33,9 +33,10 @@ func defineRoutes(r *mux.Router, handlers *handlers.HandlersService) {
 
 func addUnprotectedAPISubrouter(apiSubRouter *mux.Router, handlers *handlers.HandlersService) {
 
-	apiSubRouter.HandleFunc("/sertificates", handlers.CreateSert).Methods("POST")
+	apiSubRouter.HandleFunc("/sert/emit", handlers.CreateSert).Methods("POST")
+	apiSubRouter.HandleFunc("/sert/revoke", handlers.RevokeSert).Methods("POST")
 
-	apiSubRouter.HandleFunc("/sertificates", handlers.GetAll).Methods("GET")
+	apiSubRouter.HandleFunc("/sert/all", handlers.GetAll).Methods("GET")
 
 	apiSubRouter.HandleFunc("/help", getHelp).Methods("GET")
 	apiSubRouter.HandleFunc("/swagger.yml", swagger).Methods("GET")

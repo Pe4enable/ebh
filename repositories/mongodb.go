@@ -9,10 +9,6 @@ import (
 	"time"
 )
 
-const (
-	Cvalues     = "meterValues"
-)
-
 type MongoRepository struct {
 	conf         *config.Mongo
 	session      *mgo.Session
@@ -36,7 +32,7 @@ func (r *MongoRepository) GetAllSertificates() (result []models.Sertificate, err
 
 	err = mgoconn.DoResistant(
 		func() error {
-			return r.valuesC.Find(nil).Sort("-timestamp").One(&result)
+			return r.valuesC.Find(nil).All(&result)
 		},
 	)
 	if err != nil {
