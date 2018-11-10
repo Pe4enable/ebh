@@ -26,7 +26,7 @@
   "scripts": {
     "test": "scripts/test.sh",
     "coverage": "scripts/coverage.sh",
-    "dist": "truffle-flattener ./contracts/GreenToken.sol > GreenToken.full.sol && solcjs --bin --abi --optimize GreenToken.full.sol && rm GreenToken_full_sol_SafeMath.bin GreenToken_full_sol_SafeMath.abi && mv GreenToken_full_sol_GreenToken.bin GreenToken.full.bin && mv GreenToken_full_sol_GreenToken.abi GreenToken.full.abi",
+    "dist": "truffle-flattener ./contracts/GreenToken.sol > GreenToken.full.sol && solcjs --bin --abi --optimize GreenToken.full.sol && mv GreenToken_full_sol_GreenToken.bin GreenToken.full.bin && mv GreenToken_full_sol_GreenToken.abi GreenToken.full.abi && rm GreenToken_full_sol_*",
     "lint:js": "eslint .",
     "lint:js:fix": "eslint . --fix",
     "lint:sol": "solium -d .",
