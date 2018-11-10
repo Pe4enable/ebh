@@ -663,10 +663,55 @@ contract GreenToken is Ownable, ERC721 {
         string sertNumber;
         uint256 lifeTime; // in seconds
         string _type;
-        string wallet;
     }
 
-    mapping(uint256 => Data) public tokens;
+    mapping(uint256 => Data) private tokens;
+
+    function getInfo1(
+        uint256 tokenId
+    )
+        public
+        view
+        returns(
+            uint256 createdDate,
+            string ownerName,
+            string ogrn,
+            string addr,
+            uint256 volume
+        )
+    {
+        Data storage token = tokens[tokenId];
+        return (
+            token.createdDate,
+            token.ownerName,
+            token.ogrn,
+            token.addr,
+            token.volume
+        );
+    }
+
+    function getInfo2(
+        uint256 tokenId
+    )
+        public
+        view
+        returns(
+            string period,
+            uint256 co2Volume, // multiplied by 10**18
+            string sertNumber,
+            uint256 lifeTime, // in seconds
+            string _type
+        )
+    {
+        Data storage token = tokens[tokenId];
+        return (
+            token.period,
+            token.co2Volume,
+            token.sertNumber,
+            token.lifeTime,
+            token._type
+        );
+    }
 
     function destroy(
         uint256 tokenId
@@ -674,13 +719,15 @@ contract GreenToken is Ownable, ERC721 {
         public
         onlyOwner
     {
+        Data storage token = tokens[tokenId];
+        require(now < token.createdDate + token.lifeTime, "Token should expire before destroying");
+
         _burn(ownerOf(tokenId), tokenId);
     }
 
     function create(
         address to,
         uint256 tokenId,
-        uint256 createdDate,
         string ownerName,
         string ogrn,
         string addr,
@@ -689,8 +736,7 @@ contract GreenToken is Ownable, ERC721 {
         uint256 co2Volume, // multiplied by 10**18
         string sertNumber,
         uint256 lifeTime, // in seconds
-        string _type,
-        string wallet
+        string _type
     )
         public
         onlyOwner
@@ -702,17 +748,16 @@ contract GreenToken is Ownable, ERC721 {
 
         tokens[tokenId] = Data({
             tokenId: tokenId,
-            createdDate: createdDate,
+            createdDate: now,
             ownerName: ownerName,
             ogrn: ogrn,
             addr: addr,
-            volume: volume, // multiplied by 10**18
+            volume: volume,
             period: period,
-            co2Volume: co2Volume, // multiplied by 10**18
+            co2Volume: co2Volume,
             sertNumber: sertNumber,
-            lifeTime: lifeTime, // in seconds
-            _type: _type,
-            wallet: wallet
+            lifeTime: lifeTime,
+            _type: _type
         });
     }
 }
