@@ -10,3 +10,16 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+
+GreenToken/build/
+GreenToken/node_modules/
+.DS_Store
+.node-xmlhttprequest-sync-*
+.idea/*
+
+GreenToken/coverage/
+GreenToken/coverageEnv/
+GreenToken/allFiredEvents
+GreenToken/coverage.json
+GreenToken/scTopics
